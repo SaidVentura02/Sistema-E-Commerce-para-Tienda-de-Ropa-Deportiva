@@ -8,3 +8,6 @@ Route::get('/', function () {
 
 Route::view('/admin/dashboard', 'admin.dashboard')
     ->name('admin.dashboard');
+
+Route::view('/carrito', 'tienda.carrito')
+    ->name('carrito.demo');    

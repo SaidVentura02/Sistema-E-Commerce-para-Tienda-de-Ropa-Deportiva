@@ -13,13 +13,12 @@ return new class extends Migration
     {
         Schema::create('envio_seguimientos', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('envio_id');
+            //Si se elimina el envio, se eliminan los detalles del envio
+            $table->foreignId('envio_id')->constrained('envios')->cascadeOnDelete(); 
             $table->string('estado',20);               
             $table->string('comentario',255)->nullable(); 
             $table->dateTime('fecha');   
             $table->timestamps();
-
-            $table->foreign('envio_id')->references('id')->on('envios'); 
         });
     }
 

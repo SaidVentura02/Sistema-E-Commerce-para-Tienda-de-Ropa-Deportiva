@@ -13,14 +13,13 @@ return new class extends Migration
     {
         Schema::create('carrito_items', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('carrito_id');
-            $table->unsignedBigInteger('variante_id');
+            //Si se elimina el carrito, se elimina el registro de los items
+            $table->foreignId('carrito_id')->constrained('carritos')->cascadeOnDelete();
+            //Si se elimina el producto, se elimina todos los registros de este
+            $table->foreignId('variante_id')->constrained('variantes_productos')->cascadeOnDelete();
+            $table->unique(['carrito_id','variante_id']);
             $table->integer('cantidad')->default(1);                 
-            $table->timestamps();
-
-            $table->foreign('carrito_id')->references('id')->on('carritos'); 
-            $table->foreign('variante_id')->references('id')->on('variantes_productos');
-            $table->unique(['carrito_id','variante_id']); 
+            $table->timestamps(); 
         });
     }
 

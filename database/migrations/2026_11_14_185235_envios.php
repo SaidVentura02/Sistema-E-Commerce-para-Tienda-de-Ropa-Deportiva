@@ -13,14 +13,13 @@ return new class extends Migration
     {
         Schema::create('envios', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('pedido_id')->unique();
+           //Si se elimina el pedido, se cancela el envio
+            $table->foreignId('pedido_id')->constrained('pedidos')->cascadeOnDelete();
             $table->string('estado')->default('PENDIENTE');               
             $table->string('numero_guia')->nullable(); 
             $table->dateTime('fecha_envio')->nullable();
             $table->dateTime('fecha_entrega')->nullable();   
             $table->timestamps();
-
-            $table->foreign('pedido_id')->references('id')->on('pedidos'); 
         });
     }
 

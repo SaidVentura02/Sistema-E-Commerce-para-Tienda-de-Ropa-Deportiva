@@ -13,15 +13,13 @@ return new class extends Migration
     {
         Schema::create('pedidos_detalles', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('pedido_id');
-            $table->unsignedBigInteger('variante_id');
-            $table->integer('cantidad');               
+            //Si se elimina el pedido o la variante del producto, se eliminan los detalles del pedido
+            $table->foreignId('pedido_id')->constrained('pedidos')->cascadeOnDelete();
+            $table->foreignId('variante_id')->constrained('variantes_productos')->cascadeOnDelete(); 
+            $table->integer('cantidad')->default(1);               
             $table->decimal('precio_unitario',10,2); 
             $table->decimal('subtotal',10,2);   
             $table->timestamps();
-
-            $table->foreign('pedido_id')->references('id')->on('pedidos'); 
-            $table->foreign('variante_id')->references('id')->on('variantes_productos'); 
         });
     }
 

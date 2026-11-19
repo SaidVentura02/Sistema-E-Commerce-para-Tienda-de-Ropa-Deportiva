@@ -13,9 +13,12 @@ return new class extends Migration
     {
         Schema::create('pedidos', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('tienda_id');
-            $table->unsignedBigInteger('direccion_id')->nullable();
+            //Si se elimina el usuario, se elimina el registro de sus pedidos
+            $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
+            //Si se elimina la tienda, se elimina el registro de los pedidos en dicha tienda
+            $table->foreignId('tienda_id')->constrained('tiendas')->cascadeOnDelete();
+            //Si se elimina la ubicación, se elimina el pedido asociado
+            $table->foreignId('direccion_id')->constrained('direcciones')->cascadeOnDelete(); 
             $table->string('numero_pedido',30)->unique();               
             $table->string('tipo_entrega'); 
             $table->string('estado')->default('PENDIENTE');
@@ -25,10 +28,6 @@ return new class extends Migration
             $table->decimal('total',10,2)->default(0.00);
             $table->dateTime('fecha_pedido');   
             $table->timestamps();
-
-            $table->foreign('user_id')->references('id')->on('users');
-            $table->foreign('tienda_id')->references('id')->on('tiendas');
-            $table->foreign('direccion_id')->references('id')->on('direcciones'); 
         });
     }
 

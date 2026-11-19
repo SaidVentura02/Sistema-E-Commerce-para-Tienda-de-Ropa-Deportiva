@@ -40,3 +40,4 @@ document.addEventListener('DOMContentLoaded', function () {
   });
   update();
 });
+<script src="{{ asset('js/carrito-offcanvas-demo.js') }}"></script>

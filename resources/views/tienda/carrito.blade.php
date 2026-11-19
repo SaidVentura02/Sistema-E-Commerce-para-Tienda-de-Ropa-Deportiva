@@ -8,6 +8,7 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link href="{{ asset('css/carrito.css') }}" rel="stylesheet">
+  <link href="{{ asset('css/carrito-offcanvas.css') }}" rel="stylesheet">
 </head>
 <body>
 <header class="site-header">
@@ -40,6 +41,7 @@
   <div class="demo-note" role="note"><i class="bi bi-info-circle"></i> <strong>Vista de demostración:</strong> productos, precios, existencias y nombres de sucursales son ficticios. Los botones de cantidad funcionan únicamente en esta página. No se guarda información en MySQL.</div>
 </main>
 <div class="toast-container position-fixed bottom-0 end-0 p-3"><div id="demoToast" class="toast" role="status" aria-live="polite"><div class="toast-header"><strong class="me-auto">Prototipo de carrito</strong><button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Cerrar"></button></div><div class="toast-body" id="toastText">Esta función se conectará a Laravel en una siguiente revisión.</div></div></div>
+@include('components.carrito-offcanvas')
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script src="{{ asset('js/carrito-demo.js') }}"></script>
 </body>

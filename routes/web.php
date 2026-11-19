@@ -11,3 +11,6 @@ Route::view('/admin/dashboard', 'admin.dashboard')
 
 Route::view('/carrito', 'tienda.carrito')
     ->name('carrito.demo');    
+
+Route::view('/checkout', 'tienda.checkout')
+    ->name('checkout.demo');

@@ -6,26 +6,18 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
     public function up(): void
     {
         Schema::create('envio_seguimientos', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('envio_id');
-            $table->string('estado');               
-            $table->string('comentario')->nullable(); 
-            $table->dateTime('fecha');   
+            $table->foreignId('envio_id')->constrained('envios')->cascadeOnDelete();
+            $table->string('estado', 20);
+            $table->string('comentario', 255)->nullable();
+            $table->timestamp('fecha');
             $table->timestamps();
-
-            $table->foreign('envio_id')->references('id')->on('envios'); 
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
         Schema::dropIfExists('envio_seguimientos');

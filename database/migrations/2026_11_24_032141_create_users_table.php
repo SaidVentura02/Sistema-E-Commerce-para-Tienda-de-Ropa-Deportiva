@@ -6,25 +6,20 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
     public function up(): void
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('name')->unique();  //nombre unico
-            //se impide eliminar un rol que aun tenga usuarios registrados
-            $table->foreignId('role_id')->constrained('roles')->restrictOnDelete();  
-            $table->string('telefono',20)->nullable();  //numero telefonico opcional
-            $table->string('rtn',20)->nullable();     //rtn opcional
-            $table->string('email')->unique();      //correo electronico del usuario
+            $table->string('name', 255);
+            $table->foreignId('role_id')->constrained('roles')->restrictOnDelete();
+            $table->string('telefono', 20)->nullable();
+            $table->string('rtn', 20)->nullable();
+            $table->string('email', 255)->unique();
             $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
-            $table->boolean('activo')->default(true);  //por defecto cada usuario se encuentra activo
+            $table->string('password', 255);
+            $table->boolean('activo')->default(true);
             $table->rememberToken();
             $table->timestamps();
-
         });
 
         Schema::create('password_reset_tokens', function (Blueprint $table) {
@@ -43,13 +38,10 @@ return new class extends Migration
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
-        Schema::dropIfExists('users');
-        Schema::dropIfExists('password_reset_tokens');
         Schema::dropIfExists('sessions');
+        Schema::dropIfExists('password_reset_tokens');
+        Schema::dropIfExists('users');
     }
 };

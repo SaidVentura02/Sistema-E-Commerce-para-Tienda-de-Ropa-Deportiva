@@ -2,43 +2,34 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
     public function up(): void
     {
-        // Catálogo de productos. La talla, el color y el stock viven en variantes_productos.
         Schema::create('productos', function (Blueprint $table) {
             $table->id();
-
-            // Si se intenta borrar una tienda, marca, categoría o disciplina
-            // que tiene productos, MySQL lo rechaza (restrict).
             $table->foreignId('tienda_id')->constrained('tiendas')->restrictOnDelete();
             $table->foreignId('marca_id')->constrained('marcas')->restrictOnDelete();
             $table->foreignId('categoria_id')->constrained('categorias')->restrictOnDelete();
             $table->foreignId('disciplina_id')->constrained('disciplinas')->restrictOnDelete();
-
-            $table->string('nombre', 150);
-            $table->string('slug', 180)->unique();           // nombre para la URL, único
+            $table->string('nombre', 150)->index('productos_nombre_index');
+            $table->string('slug', 180)->unique();
             $table->text('descripcion')->nullable();
-            $table->string('genero', 20);                    // hombre, mujer, unisex, nino, nina
-            $table->decimal('precio', 10, 2);                // dinero siempre en decimal
+            $table->string('genero', 20);
+            $table->decimal('precio', 10, 2);
             $table->decimal('precio_oferta', 10, 2)->nullable();
-            $table->boolean('destacado')->default(false);    // aparece en el Home
-            $table->boolean('activo')->default(true);        // si se muestra en la tienda
+            $table->boolean('destacado')->default(false);
+            $table->boolean('activo')->default(true);
             $table->timestamps();
-
-            $table->index('nombre');                         // acelera la búsqueda por nombre
         });
+
+        DB::statement('ALTER TABLE productos ADD CONSTRAINT chk_productos_precio CHECK (precio >= 0)');
+        DB::statement('ALTER TABLE productos ADD CONSTRAINT chk_productos_oferta CHECK (precio_oferta IS NULL OR (precio_oferta >= 0 AND precio_oferta <= precio))');
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
         Schema::dropIfExists('productos');

@@ -1,0 +1,46 @@
+/* Offcanvas de carrito: CSS independiente para facilitar la integracion. */
+.carrito-drawer{--drawer-navy:#15233a;--drawer-lime:#c3f55a;--drawer-muted:#7d8ba1;--drawer-line:#e8edf2;width:min(100vw,465px)!important;background:#f7f9fc;color:#15233a;font-family:'DM Sans',Arial,sans-serif;box-shadow:-15px 0 55px #15233a22}
+.carrito-drawer .carrito-drawer-header{padding:28px 28px 21px;background:var(--drawer-navy);color:white;align-items:flex-start}
+.carrito-kicker{color:var(--drawer-lime);font-size:10px;letter-spacing:2.3px;font-weight:800}
+.carrito-drawer h2{font-family:'Outfit',sans-serif;font-size:29px;font-weight:800;margin:5px 0 0;letter-spacing:-1px}
+.carrito-acento{color:var(--drawer-lime)}
+.carrito-subtitulo{color:#b0c0d4;font-size:12px;margin:5px 0 0}
+.carrito-drawer-header .btn-close{margin:0!important;padding:8px!important;opacity:.9}
+.carrito-envio{display:flex;align-items:center;gap:10px;background:#eaf3db;color:#607d32;padding:12px 28px;font-size:12px;font-weight:700}
+.carrito-envio i{font-size:18px}
+.carrito-drawer-body{padding:19px 24px;overflow-y:auto}
+.drawer-product{display:grid;grid-template-columns:88px minmax(0,1fr);gap:14px;background:#fff;border:1px solid var(--drawer-line);border-radius:15px;padding:12px;margin-bottom:12px;box-shadow:0 3px 18px #172b4408}
+.drawer-product-img{height:102px;border-radius:11px;background:linear-gradient(135deg,#e6ebf1,#f8f9fb);display:grid;place-items:center;overflow:hidden}
+.drawer-product-img img{width:100%;height:100%;object-fit:cover}
+.drawer-product-img i{color:#7a8da4;font-size:30px}
+.drawer-product-category{font-size:9px;letter-spacing:1.1px;color:#779c3f;font-weight:800;text-transform:uppercase}
+.drawer-product h3{font-family:'Outfit',sans-serif;font-size:15px;line-height:1.2;margin:4px 0 5px;font-weight:800}
+.drawer-product-meta{color:#8391a5;font-size:10px;line-height:1.5;margin:0}
+.drawer-product-price{font-weight:800;font-size:14px;white-space:nowrap;margin-top:7px}
+.drawer-product-actions{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:9px}
+.drawer-qty{display:flex;border:1px solid #dfe6ee;border-radius:8px;overflow:hidden;height:31px;align-items:center}
+.drawer-qty button{height:30px;width:31px;border:0;background:#f0f3f7;color:#263c52;font-size:17px}
+.drawer-qty button:disabled{opacity:.4;cursor:not-allowed}
+.drawer-qty output{min-width:27px;text-align:center;font-size:12px;font-weight:800}
+.drawer-remove{background:transparent;border:0;color:#ac7580;font-size:15px;padding:6px 8px}
+.drawer-remove:hover{color:#bd384b}
+.carrito-sucursales{background:#eef5e5;border:1px solid #dfebd0;color:#718652;border-radius:12px;padding:13px;display:flex;gap:10px;align-items:flex-start;font-size:11px;line-height:1.5;margin:14px 0}
+.carrito-sucursales i{font-size:17px}
+.carrito-drawer-empty{text-align:center;color:#8998a9;padding:65px 12px}
+.carrito-drawer-empty i{font-size:43px;color:#b5c2ce}
+.carrito-drawer-empty h3{font-size:18px;color:#16253b;margin:13px 0 8px}
+.carrito-drawer-empty p{font-size:12px}
+.carrito-drawer-footer{padding:19px 25px 22px;border-top:1px solid #e3e9f1;background:#fff;box-shadow:0 -6px 22px #1729400a}
+.carrito-drawer-total{display:flex;align-items:baseline;justify-content:space-between;gap:8px}
+.carrito-drawer-total span{font-size:13px;font-weight:700}
+.carrito-drawer-total strong{font-family:'Outfit',sans-serif;font-size:24px;letter-spacing:-.6px}
+.carrito-drawer-footer p{margin:4px 0 15px;color:#8795a7;font-size:10px}
+.carrito-drawer-btn{display:flex;align-items:center;justify-content:center;gap:12px;width:100%;text-align:center;border-radius:11px;padding:13px;font-weight:800;font-size:12px;text-decoration:none;margin-bottom:9px}
+.carrito-drawer-btn-primary{background:var(--drawer-lime);color:#1c2d18}
+.carrito-drawer-btn-primary:hover{background:#b2eb48;color:#1c2d18}
+.carrito-drawer-btn-dark{background:var(--drawer-navy);color:white}
+.carrito-drawer-btn-dark:hover{background:#2b415c;color:white}
+.carrito-drawer-btn[aria-disabled='true']{opacity:.45;pointer-events:none}
+.carrito-demo-leyenda{text-align:center;color:#98a5b3;font-size:10px;margin-top:12px}
+.carrito-demo-leyenda i{margin-right:4px}
+@media(max-width:575.98px){.carrito-drawer .carrito-drawer-header{padding:23px 20px 18px}.carrito-envio{padding:10px 20px}.carrito-drawer-body{padding:15px}.carrito-drawer-footer{padding:17px 18px}}
